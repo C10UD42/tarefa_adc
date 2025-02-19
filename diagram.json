@@ -44,6 +44,7 @@
         "id": "joystick1",
         "top": -90,
         "left": 301.4,
+        "rotate": 90,
         "attrs": {}
       }
     ],
