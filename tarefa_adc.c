@@ -26,6 +26,8 @@
 
 bool func_pwm = true;
 bool cor = true;
+int x_square;
+int y_square;
 
 bool debouncing(){
     //implementar o debouncing
@@ -142,11 +144,12 @@ int main() {
         if(vrx_value == 2047){
             pwm_set_chan_level(slice2, pwm_gpio_to_channel(LED_PIN_RED), 0);
         }
-        if(vrx_value == 2047 && vry_value == 2047){
-            ssd1306_draw_string(&ssd, "0", 60, 28); //Quadrado centralizado
-        }
+        x_square = ((vrx_value - 2047) * 64) / 2047 + 64;
+        y_square = ((vry_value - 2047) * 32) / 2047 + 32;
+        ssd1306_draw_string(&ssd, "0", x_square, y_square); // Desenha o quadrado baseado no valor do joystick
+        
         ssd1306_send_data(&ssd); // Atualiza o display
-        sleep_ms(250);
+        sleep_ms(25);
     }
     return 0;
 }
